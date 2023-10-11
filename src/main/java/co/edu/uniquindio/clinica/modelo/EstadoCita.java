@@ -11,11 +11,11 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class MedioPago implements Serializable {
+public class EstadoCita implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
-    public Integer idMedioPago;
+    private Integer idEstadoCita;
 
-    public String nombre;
+    private String estado;
 }
