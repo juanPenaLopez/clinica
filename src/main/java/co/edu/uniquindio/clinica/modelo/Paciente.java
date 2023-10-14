@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -47,4 +48,7 @@ public class Paciente implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idTipoIdentificacion")
     private TipoIdentificacion tipoIdentificacion;
+
+    @OneToMany(mappedBy = "paciente")
+    private List<AlergiaPaciente> alergiaPacienteList;
 }
