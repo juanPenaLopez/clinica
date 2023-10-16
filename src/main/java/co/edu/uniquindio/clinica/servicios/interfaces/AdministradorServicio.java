@@ -5,6 +5,8 @@ import co.edu.uniquindio.clinica.modelo.EstadoPQRS;
 
 import java.util.List;
 
+import java.util.List;
+
 public interface AdministradorServicio {
 
     int crearMedico(RegistrarMedicoDTO medicoDTO) throws Exception;
@@ -23,9 +25,8 @@ public interface AdministradorServicio {
 
     int responderPQRS(RegistroRespuestaDTO registroRespuestaDTO) throws Exception;
 
-    void cambiarEstadoPQRS(int codigoPQRS, EstadoPQRS estadoPQRS) throws Exception;
+    void cambiarEstadoPQRS(int codigoPQRS, EstadoPQRSDTO estadoPQRS) throws Exception;
 
     List<ItemCitaAdminDTO> listarCitas() throws Exception;
-
 
 }
