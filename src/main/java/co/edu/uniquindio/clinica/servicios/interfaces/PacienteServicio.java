@@ -20,5 +20,7 @@ public interface PacienteServicio {
 
     Paciente eliminarCita (Integer idPaciente) throws Exception;
 
+    Paciente pagarFactura (Integer idPaciente) throws Exception;
+
     List<Paciente> listarTodos();
 }
