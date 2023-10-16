@@ -2,11 +2,10 @@ package co.edu.uniquindio.clinica.modelo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Getter
@@ -14,16 +13,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Alergia implements Serializable {
+public class AlergiaPaciente implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
-    private Integer idAlergia;
+    private Integer id;
 
-    private String nombre;
+    @ManyToOne
+    private Alergia alergia;
 
-    private String descripcion;
-
-    @OneToMany(mappedBy = "alergia")
-    private List<AlergiaPaciente> alergiaPacienteList;
+    @ManyToOne
+    private Paciente paciente;
 }

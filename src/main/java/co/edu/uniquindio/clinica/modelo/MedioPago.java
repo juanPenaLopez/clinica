@@ -17,6 +17,5 @@ public class MedioPago implements Serializable {
     @EqualsAndHashCode.Include
     public Integer idMedioPago;
 
-
     public String nombre;
 }

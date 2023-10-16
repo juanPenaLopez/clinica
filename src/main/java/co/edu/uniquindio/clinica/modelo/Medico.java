@@ -4,28 +4,23 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Paciente implements Serializable {
+public class Medico implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
-    private Integer idPaciente;
+    private Integer idMedico;
 
     private String email;
 
     private String contrasena;
 
     private String numeroDocumento;
-
-    private String nombreCompleto;
 
     private String telefono;
 
@@ -35,20 +30,13 @@ public class Paciente implements Serializable {
     @JoinColumn(name = "idCiudad")
     private Ciudad ciudad;
 
-    private LocalDate fechaNacimiento;
-
-    private TipoSangre tipoSangre;
-
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idEPS")
-    private EPS eps;
+    @JoinColumn(name = "idEspecialidad")
+    private Especialidad especialidad;
 
     private EstadoPersona estadoPersona;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idTipoIdentificacion")
     private TipoIdentificacion tipoIdentificacion;
-
-    @OneToMany(mappedBy = "paciente")
-    private List<AlergiaPaciente> alergiaPacienteList;
 }
