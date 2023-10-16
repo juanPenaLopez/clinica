@@ -12,16 +12,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Paciente implements Serializable {
+public class Paciente extends Cuenta implements Serializable {
 
-    @Id
-    @EqualsAndHashCode.Include
-    private Integer idPaciente;
-
-    private String email;
-
-    private String contrasena;
+    private String nombre;
 
     private String numeroDocumento;
 

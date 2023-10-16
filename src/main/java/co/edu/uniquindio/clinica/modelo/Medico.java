@@ -9,16 +9,9 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Medico implements Serializable {
+public class Medico extends Cuenta implements Serializable{
 
-    @Id
-    @EqualsAndHashCode.Include
-    private Integer idMedico;
-
-    private String email;
-
-    private String contrasena;
+    private String nombre;
 
     private String numeroDocumento;
 

@@ -1,6 +1,9 @@
 package co.edu.uniquindio.clinica.servicios.interfaces;
 
 import co.edu.uniquindio.clinica.dto.*;
+import co.edu.uniquindio.clinica.modelo.EstadoPQRS;
+
+import java.util.List;
 
 public interface AdministradorServicio {
 

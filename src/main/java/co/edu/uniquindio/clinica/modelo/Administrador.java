@@ -6,18 +6,13 @@ import lombok.*;
 
 import java.io.Serializable;
 
-@Entity@Getter
+@Entity
+@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Administrador implements Serializable {
+public class Administrador extends Cuenta implements Serializable {
 
-    @Id
-    @EqualsAndHashCode.Include
-    private Integer idAdministrador;
+    private String nombre;
 
-    private String email;
-
-    private String contrasena;
 }
