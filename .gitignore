@@ -8,6 +8,8 @@ build/
 .idea
 .idea/*
 .idea/modules.xml
+.idea/misc.xml
+.idea/workspace.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
