@@ -4,6 +4,9 @@ import co.edu.uniquindio.clinica.modelo.HorarioMedico;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface HorarioRepo extends JpaRepository<HorarioMedico, Integer> {
+    List<HorarioMedico> findAllByMedicoCodigo(Integer codigo);
 }

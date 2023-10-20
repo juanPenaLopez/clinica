@@ -3,12 +3,16 @@ package co.edu.uniquindio.clinica.servicios.impl;
 import co.edu.uniquindio.clinica.dto.EmailDTO;
 import co.edu.uniquindio.clinica.servicios.interfaces.EmailServicio;
 import jakarta.mail.internet.MimeMessage;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 @Service
+@Getter
+@Setter
 @RequiredArgsConstructor
 public class EmailServicioImpl implements EmailServicio {
 

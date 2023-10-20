@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface MedicoRepo extends JpaRepository<Medico, Integer> {
 
     Medico findByTipoNumeroDocumento(Integer idTipoDocumento, String numeroDocumento);
+
+    Medico findByCorreo(String correo);
 }

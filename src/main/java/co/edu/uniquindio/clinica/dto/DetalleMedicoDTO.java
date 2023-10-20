@@ -1,9 +1,6 @@
 package co.edu.uniquindio.clinica.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
@@ -32,7 +29,23 @@ public class DetalleMedicoDTO {
 
     @NotEmpty
     String urlFoto;
+
     @NotEmpty
     private List<HorarioDTO> horarios;
+
+    @NotEmpty
+    private String numeroIdentificacion;
+
+    @NotEmpty
+    @Length(max = 150)
+    private String nombreCompleto;
+
+    @NotEmpty
+    @NotBlank
+    private Integer idEspecialidad;
+
+    @NotEmpty
+    @NotEmpty
+    private Integer idCiudad;
 
 }
