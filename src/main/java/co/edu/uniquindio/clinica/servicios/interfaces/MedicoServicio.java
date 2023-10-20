@@ -1,9 +1,6 @@
 package co.edu.uniquindio.clinica.servicios.interfaces;
 
-import co.edu.uniquindio.clinica.dto.CitaDTO;
-import co.edu.uniquindio.clinica.dto.ResultadoDTO;
-import co.edu.uniquindio.clinica.dto.SolicitarDiaLibreInDTO;
-import co.edu.uniquindio.clinica.dto.SolicitarReservaQuirofanoDTO;
+import co.edu.uniquindio.clinica.dto.*;
 import co.edu.uniquindio.clinica.modelo.Medico;
 import co.edu.uniquindio.clinica.modelo.Paciente;
 
@@ -17,9 +14,9 @@ public interface MedicoServicio {
 
     List<CitaDTO> consultarHistorialCitasAtendidas (Integer idMedico) throws Exception;
 
-    Medico consultarHistorialPaciente (Integer idPaciente) throws Exception;
+    List<AtencionDTO> consultarHistorialPaciente (Integer idPaciente) throws Exception;
 
-    Medico realizarDiagnosticoPaciente (Integer idPaciente) throws Exception;
+    ResultadoDTO realizarDiagnosticoPaciente (AtencionCitaDTO atencionCitaDTO) throws Exception;
 
     ResultadoDTO solicitarReservaQuirofano (SolicitarReservaQuirofanoDTO solicitudReserva) throws Exception;
 }

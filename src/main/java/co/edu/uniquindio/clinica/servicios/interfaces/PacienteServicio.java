@@ -1,10 +1,8 @@
 package co.edu.uniquindio.clinica.servicios.interfaces;
 
-import co.edu.uniquindio.clinica.dto.ActualizarDTO;
-import co.edu.uniquindio.clinica.dto.CitaDTO;
-import co.edu.uniquindio.clinica.dto.RegistroDTO;
-import co.edu.uniquindio.clinica.dto.ResultadoDTO;
+import co.edu.uniquindio.clinica.dto.*;
 import co.edu.uniquindio.clinica.modelo.Paciente;
+import co.edu.uniquindio.clinica.modelo.SolicitarCitaDTO;
 
 import java.util.List;
 
@@ -18,13 +16,13 @@ public interface PacienteServicio {
 
     Paciente verDetallePaciente (Integer idPaciente) throws Exception;
 
-    Paciente pedirCita (Integer idPaciente) throws Exception;
+    ResultadoDTO pedirCita (SolicitarCitaDTO solicitarCitaDTO) throws Exception;
 
-    Paciente consultarCita (Integer idPaciente) throws Exception;
-
-    Paciente eliminarCita (Integer idPaciente) throws Exception;
+    CitaDTO consultarCita (ConsultarCitaDTO consultarCitaDTO) throws Exception;
 
     Paciente pagarFactura (Integer idPaciente) throws Exception;
 
     List<CitaDTO> listarCitas(Integer idPaciente) throws Exception;
+
+    void consultarDisponibilidad(SolicitarCitaDTO solicitarCitaDTO) throws Exception;
 }

@@ -18,6 +18,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+
 public class AutenticacionServicioImpl implements AutenticacionServicio {
 
     private final CuentaRepo cuentaRepo;

@@ -28,6 +28,8 @@ public class MedicoServicioImpl implements MedicoServicio {
 
     private final QuirofanoRepo quirofanoRepo;
 
+    private final AtencionRepo atencionRepo;
+
     @Override
     public ResultadoDTO solicitarDiaLibre(SolicitarDiaLibreInDTO solicitudDiaLibre) throws Exception {
 
@@ -97,13 +99,50 @@ public class MedicoServicioImpl implements MedicoServicio {
     }
 
     @Override
-    public Medico consultarHistorialPaciente(Integer idPaciente) throws Exception {
-        return null;
+    public List<AtencionDTO> consultarHistorialPaciente(Integer idPaciente) throws Exception {
+
+        Optional<List<Atencion>> listaAtencionesPaciente = atencionRepo.findByAllPaciente(idPaciente);
+
+        if(listaAtencionesPaciente.isEmpty()){
+            throw new Exception("No existen atenciones anteriores para el paciente");
+        }
+
+        return listaAtencionesPaciente.get().stream().map(atencion ->{
+            AtencionDTO atencionDTO = new AtencionDTO();
+            atencionDTO.setIdAtencion(atencion.getIdAtencion());
+            atencionDTO.setTratamiento(atencion.getTratamiento());
+            atencionDTO.setNota(atencion.getNota());
+            atencionDTO.setSintomas(atencion.getSintomas());
+            atencionDTO.setCita(atencion.getCita());
+            atencionDTO.setDiagnostico(atencionDTO.getDiagnostico());
+
+            return atencionDTO;
+        }).toList();
     }
 
     @Override
-    public Medico realizarDiagnosticoPaciente(Integer idPaciente) throws Exception {
-        return null;
+    public ResultadoDTO realizarDiagnosticoPaciente(AtencionCitaDTO atencionCitaDTO) throws Exception {
+
+        Optional<Cita> citaBuscada = citaRepo.findById(atencionCitaDTO.getIdCita());
+        ResultadoDTO resultadoDTO = new ResultadoDTO();
+
+        if(citaBuscada.isEmpty()){
+            resultadoDTO.setEsExitoso(false);
+            resultadoDTO.getMensajesError().add("No existe cita con el id: " + atencionCitaDTO.getIdCita());
+        }
+
+        Atencion atencionCita = new Atencion();
+        atencionCita.setCita(citaBuscada.get());
+        atencionCita.setDiagnostico(atencionCitaDTO.getDiagnostico());
+        atencionCita.setNota(atencionCitaDTO.getNota());
+        atencionCita.setSintomas(atencionCitaDTO.getSintomas());
+        atencionCita.setTratamiento(atencionCitaDTO.getTratamiento());
+
+        atencionRepo.save(atencionCita);
+        resultadoDTO.setEsExitoso(true);
+        resultadoDTO.getMensajesInfo().add("Se guardó correctamente la atención de la cita");
+
+        return resultadoDTO;
     }
 
     @Override
