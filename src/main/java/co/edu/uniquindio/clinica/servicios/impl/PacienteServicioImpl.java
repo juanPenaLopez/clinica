@@ -5,6 +5,7 @@ import co.edu.uniquindio.clinica.modelo.*;
 import co.edu.uniquindio.clinica.repositorios.*;
 import co.edu.uniquindio.clinica.servicios.interfaces.PacienteServicio;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +48,9 @@ public class PacienteServicioImpl implements PacienteServicio {
         Optional<EPS> epsBuscada = epsRepo.findById(registro.getIdEps());
         Optional<TipoIdentificacion> tipoIdentificacion = tipoIdentificacionRepo.findById(registro.getIdTipoIdentificacion());
 
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String contraseñaCifrada = passwordEncoder.encode(registro.getContrasena());
+
         Paciente paciente = new Paciente();
         paciente.setEstadoPersona(EstadoPersona.ACTIVO);
         paciente.setNombre(registro.getNombreCompleto());
@@ -58,6 +62,7 @@ public class PacienteServicioImpl implements PacienteServicio {
         paciente.setCiudad(ciudadBuscada.get());
         paciente.setEps(epsBuscada.get());
         paciente.setTipoIdentificacion(tipoIdentificacion.get());
+        paciente.setContrasena(contraseñaCifrada);
 
         pacienteRepo.save(paciente);
         resultadoDTO.setEsExitoso(true);

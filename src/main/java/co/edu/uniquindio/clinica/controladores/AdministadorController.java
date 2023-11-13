@@ -4,6 +4,7 @@ import co.edu.uniquindio.clinica.dto.*;
 import co.edu.uniquindio.clinica.modelo.EstadoPQRS;
 import co.edu.uniquindio.clinica.servicios.interfaces.AdministradorServicio;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,52 +17,56 @@ public class AdministadorController {
     private final AdministradorServicio administradorServicio;
 
     @PostMapping("/crear-medico")
-    private int crearMedico(RegistroMedicoDTO medicoDTO) throws Exception {
-        return 0;
+    private ResponseEntity<MensajeDTO<String>> crearMedico(RegistroMedicoDTO medicoDTO) throws Exception {
+        administradorServicio.crearMedico(medicoDTO);
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, "El médico fue creado correctamente"));
     }
 
     @PutMapping("/actualizar-medico")
-    private int actualizarMedico(DetalleMedicoDTO medicoDTO) throws Exception {
-        return 0;
+    private ResponseEntity<MensajeDTO<String>> actualizarMedico(DetalleMedicoDTO medicoDTO) throws Exception {
+        administradorServicio.actualizarMedico(medicoDTO);
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, "Se actualizó el médico correctamente"));
     }
 
     @DeleteMapping("/eliminar-medico")
-    private void eliminarMedico(Integer idMedico) throws Exception{
-
+    private ResponseEntity<MensajeDTO<String>> eliminarMedico(Integer idMedico) throws Exception{
+        administradorServicio.eliminarMedico(idMedico);
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, "El medico fue eliminado correctamente"));
     }
 
     @GetMapping("/listar-medicos")
-    private List<ItemMedicoDTO> listarMedicos() throws Exception{
-        return null;
+    private ResponseEntity<MensajeDTO<List<ItemMedicoDTO>>> listarMedicos() throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.listarMedicos()));
     }
 
     @GetMapping("/detalle-medico")
-    private DetalleMedicoDTO obtenerMedico(Integer idMedico) throws Exception{
-        return null;
+    private ResponseEntity<MensajeDTO<DetalleMedicoDTO>> obtenerMedico(Integer idMedico) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.obtenerMedico(idMedico))) ;
     }
 
     @GetMapping("/pqrs")
-    private List<ItemPQRSDTO> listarPQRS() throws Exception{
-        return null;
+    private ResponseEntity<MensajeDTO<List<ItemPQRSDTO>>> listarPQRS() throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.listarPQRS())) ;
     }
 
     @GetMapping("/detalle-pqrs")
-    private DetallePQRSDTO verDetallePQRS(int codigo) throws Exception{
-        return null;
+    private ResponseEntity<MensajeDTO<DetallePQRSDTO>> verDetallePQRS(int codigo) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.verDetallePQRS(codigo))) ;
     }
 
     @PutMapping("/responder-pqrs")
-    private int responderPQRS(RegistroRespuestaDTO registroRespuestaDTO) throws Exception{
-        return 0;
+    private ResponseEntity<MensajeDTO<Integer>> responderPQRS(RegistroRespuestaDTO registroRespuestaDTO) throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.responderPQRS(registroRespuestaDTO))) ;
     }
 
     @PutMapping("/cambiar-estado-pqrs")
-    private void cambiarEstadoPQRS(int codigoPQRS, EstadoPQRS estadoPQRS) throws Exception{
-
+    private ResponseEntity<MensajeDTO<String>> cambiarEstadoPQRS(int codigoPQRS, EstadoPQRS estadoPQRS) throws Exception{
+        administradorServicio.cambiarEstadoPQRS(codigoPQRS, estadoPQRS);
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, "El estado de la PQRS fue cambiado correctamente"));
     }
 
     @GetMapping("/citas")
-    private List<ItemCitaAdminDTO> listarCitas() throws Exception{
-        return null;
+    private ResponseEntity<MensajeDTO<List<ItemCitaAdminDTO>>> listarCitas() throws Exception{
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.listarCitas())) ;
     }
 }
