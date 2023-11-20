@@ -21,7 +21,7 @@ public class DetalleMedicoDTO {
 
     @NotEmpty
     @Length(max = 10)
-    private String contraseña;
+    private String contrasena;
 
     @NotEmpty
     @Length(max = 20)

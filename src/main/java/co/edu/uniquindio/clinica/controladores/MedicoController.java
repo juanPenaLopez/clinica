@@ -27,13 +27,13 @@ public class MedicoController {
                 medicoServicio.consultarCitasPendientes(idEstadoCita, idMedico)));
     }
 
-    @GetMapping("/historico-citas")
+    @PostMapping("/historico-citas")
     private ResponseEntity<MensajeDTO<List<AtencionDTO>>> consultarHistorialCitasAtendidas (Integer idMedico) throws Exception{
         return ResponseEntity.ok().body( new MensajeDTO<>(false,
                 medicoServicio.consultarHistorialPaciente(idMedico)));
     }
 
-    @GetMapping("/historial-paciente")
+    @PostMapping("/historial-paciente")
     private ResponseEntity<MensajeDTO<List<AtencionDTO>>> consultarHistorialPaciente (Integer idPaciente) throws Exception{
         return ResponseEntity.ok().body( new MensajeDTO<>(false,
                 medicoServicio.consultarHistorialPaciente(idPaciente)));

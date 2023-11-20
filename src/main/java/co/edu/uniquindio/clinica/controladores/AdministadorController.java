@@ -28,7 +28,7 @@ public class AdministadorController {
         return ResponseEntity.ok().body( new MensajeDTO<>(false, "Se actualizó el médico correctamente"));
     }
 
-    @DeleteMapping("/eliminar-medico")
+    @DeleteMapping("/eliminar-medico/")
     private ResponseEntity<MensajeDTO<String>> eliminarMedico(Integer idMedico) throws Exception{
         administradorServicio.eliminarMedico(idMedico);
         return ResponseEntity.ok().body( new MensajeDTO<>(false, "El medico fue eliminado correctamente"));
@@ -39,7 +39,7 @@ public class AdministadorController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.listarMedicos()));
     }
 
-    @GetMapping("/detalle-medico")
+    @GetMapping("/detalle-medico/")
     private ResponseEntity<MensajeDTO<DetalleMedicoDTO>> obtenerMedico(Integer idMedico) throws Exception{
         return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.obtenerMedico(idMedico))) ;
     }
@@ -49,7 +49,7 @@ public class AdministadorController {
         return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.listarPQRS())) ;
     }
 
-    @GetMapping("/detalle-pqrs")
+    @GetMapping("/detalle-pqrs/")
     private ResponseEntity<MensajeDTO<DetallePQRSDTO>> verDetallePQRS(int codigo) throws Exception{
         return ResponseEntity.ok().body(new MensajeDTO<>(false, administradorServicio.verDetallePQRS(codigo))) ;
     }
